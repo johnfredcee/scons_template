@@ -1,0 +1,4 @@
+*.pyc
+*.dblite
+hello_boost
+*.o

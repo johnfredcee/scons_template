@@ -7,11 +7,9 @@ import platform
 
 
 def add_opts(vars):
-    print dir(vars.Add)
     vars.Add(PathVariable("BOOST_INCLUDE_PATH",
                           "Where the boost headers live",
-                          "/usr/include",
-                          PathVariable.PathIsDir))
+                          "/usr/include"))
     vars.Add(PathVariable("BOOST_LIB_PATH",
                           "Where the boost library lives",
                           "/usr/lib/i386-linux-gnu",

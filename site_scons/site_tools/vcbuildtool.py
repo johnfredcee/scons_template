@@ -5,7 +5,7 @@ def exists(env):
     return True
     
 def generate(env, **kwargs):
-    opts = kwargs["xsconsopts"]
+    opts = env[BUILD_OPTIONS]
     opts.Add(PathVariable("VC_BUILD_TOOLS_PATH", "Where the VC++ Build tools are installed", "C:/Program Files (x86)/Microsoft Visual C++ Build Tools", PathVariable.PathIsDir))
     msenv = Environment(tools = [], variables=opts)
     env.Append(MSVC_USE_SCRIPT = msenv["VC_BUILD_TOOLS_PATH"] + "/vcbuildtools.bat")

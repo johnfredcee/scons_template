@@ -8,7 +8,7 @@ import platform
 import pprint
 
 def make_root_env(opts):
-    opts.Add("TOOLS", "List of tools to use")
+    opts.Add("PROJECT_TOOLS", "List of tools to use")
     env = Environment(variables = opts, INITIAL_ENVIRONMENT=True, tools = [])
     env.Append(BUILD_OPTIONS = opts)
     if (not("CPPPATH") in env):
@@ -17,6 +17,6 @@ def make_root_env(opts):
         env["LIBPATH"] = []        
     if (not("LIBS") in env):
         env["LIBS"] = []            
-    for t in env["TOOLS"]:
+    for t in env["PROJECT_TOOLS"]:
         env.Tool(t)
     return env

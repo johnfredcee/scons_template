@@ -5,7 +5,11 @@ import os.path
 import glob
 import platform
 
-def add_opts(vars):
+def exists(env):
+    return True
+
+def generate(env, **kwargs):
+    vars = env["BUILD_OPTIONS"]
     vars.Add(PathVariable("CINDER_INCLUDE_PATH",
                           "Where the cinder headers live",
                           "/usr/include",
@@ -16,10 +20,11 @@ def add_opts(vars):
                           PathVariable.PathIsDir))
     vars.Add(PathVariable("CINDER_LIB",
                           "Name of the cinder library",
-                          "cinder", 0)) 
-    return vars
-
-def add_to_env(env):
+                          "cinder", 0))
+    cinderenv = Environment(variables = vars, tools = [])
+    env.Append(CINDER_INCLUDE_PATH = cinderenv["CINDER_INCLUDE_PATH"])
+    env.Append(CINDER_LIB_PATH = cinderenv["CINDER_LIB_PATH"])
+    env.Append(CINDER_LIB = cinderenv["CINDER_LIBRARIES"])                               
     result = FindFile("Cinder.h", env["CINDER_INCLUDE_PATH"] + "/cinder/")
     if (result):
         env["CPPPATH"] += [ env["CINDER_INCLUDE_PATH"] ]

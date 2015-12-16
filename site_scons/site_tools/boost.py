@@ -24,13 +24,11 @@ def generate(env, **kwargs):
                           [ "atomic", "filesystem", "chrono", "context", "coroutine",
                             "date_time", "exception", "iostreams", "locale", "log",
                             "math", "python", "random", "regex", "signals", "system", "thread",
-                            "timer", "wave" ]))        
-    # if env["INITIAL_ENVIRONMENT"]:
-    #     return env
+                            "timer", "wave" ]))            
     boostenv = Environment(variables = vars, tools = [])
     env.Append(BOOST_INCLUDE_PATH = boostenv["BOOST_INCLUDE_PATH"])
     env.Append(BOOST_LIB_PATH = boostenv["BOOST_LIB_PATH"])
-    env.Append(BOOST_LIBRARIES = boostenv["BOOST_LIBRARIES"])                   
+    env.Append(BOOST_LIBRARIES = boostenv["BOOST_LIBRARIES"])                           
     result = FindFile("version.hpp", env["BOOST_INCLUDE_PATH"] + "/boost")
     if (result):
         if (not(env["BOOST_INCLUDE_PATH"] in env["CPPPATH"])):

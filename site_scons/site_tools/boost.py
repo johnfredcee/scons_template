@@ -31,8 +31,8 @@ def generate(env, **kwargs):
     env.Append(BOOST_LIBRARIES = boostenv["BOOST_LIBRARIES"])                           
     result = FindFile("version.hpp", env["BOOST_INCLUDE_PATH"] + "/boost")
     if (result):
-        if (not(env["BOOST_INCLUDE_PATH"] in env["CPPPATH"])):
-            env["CPPPATH"] += [ env["BOOST_INCLUDE_PATH"] ]
+        if (not("CPPPATH" in env) or (not(env["BOOST_INCLUDE_PATH"] in env["CPPPATH"]))):
+            env.Append(CPPPATH = env["BOOST_INCLUDE_PATH"])
         else:
             pass
     else:
@@ -43,9 +43,9 @@ def generate(env, **kwargs):
             lib_to_find = env.subst("${LIBPREFIX}boost_"+boost_lib+"${LIBSUFFIX}")
             result = FindFile(lib_to_find, env["BOOST_LIB_PATH"])
             if (result):
-                if (not(env["BOOST_LIB_PATH"] in env["LIBPATH"])):
-                    env["LIBPATH"] += [ env["BOOST_LIB_PATH"] ]
-                env["LIBS"] +=  [ "boost_" + boost_lib ]
+                if (not("LIBPATH" in env) or (not(env["BOOST_LIB_PATH"] in env["LIBPATH"]))):
+                    env.Append(LIBPATH =  env["BOOST_LIB_PATH"])
+                env.Append(LIBS =  "boost_" + boost_lib)
             else:
                 print "Failed to find boost %s library at %s " % ( boost_lib, env["BOOST_LIB_PATH"] )
                 Exit(1)                            

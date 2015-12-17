@@ -9,14 +9,18 @@ import pprint
 
 def make_root_env(opts):
     opts.Add("PROJECT_TOOLS", "List of tools to use")
+    opts.Add("PROJECT_CPPPATH", "Extra include paths for project", [])
+    opts.Add("PROJECT_CCFLAGS", "Extra C flags for project", [])
+    opts.Add("PROJECT_CXXFLAGS", "Extra C++ flags for project", [])
+    opts.Add("PROJECT_LIBPATH", "Extra library paths for project", [])
+    opts.Add("PROJECT_LIBS", "Extra libraries for project", [])
     env = Environment(variables = opts, INITIAL_ENVIRONMENT=True, tools = [])
+    env["CPPPATH"] = []
     env.Append(BUILD_OPTIONS = opts)
-    if (not("CPPPATH") in env):
-        env["CPPPATH"] = []
-    if (not("LIBPATH") in env):
-        env["LIBPATH"] = []        
-    if (not("LIBS") in env):
-        env["LIBS"] = []            
     for t in env["PROJECT_TOOLS"]:
         env.Tool(t)
+    env.Append(CPPPATH = env["PROJECT_CPPPATH"])
+    env.Append(LIBPATH  = env["PROJECT_LIBPATH"])
+    env.Append(CCFLAGS = env["PROJECT_CCFLAGS"])
+    env.Append(CXXFLAGS = env["PROJECT_CXXFLAGS"])        
     return env

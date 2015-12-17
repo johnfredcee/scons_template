@@ -23,4 +23,5 @@ def make_root_env(opts):
     env.Append(LIBPATH  = env["PROJECT_LIBPATH"])
     env.Append(CCFLAGS = env["PROJECT_CCFLAGS"])
     env.Append(CXXFLAGS = env["PROJECT_CXXFLAGS"])        
+    env.Append(LIBS = env["PROJECT_LIBS"])        
     return env

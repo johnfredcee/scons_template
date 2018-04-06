@@ -1,4 +1,7 @@
 
+#
+# This estabilshes the VC Build tools as a build option on Windows
+#
 from SCons.Script import *
 
 def exists(env):

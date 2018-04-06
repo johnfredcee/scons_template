@@ -1,4 +1,8 @@
 
+#
+# This is the script that establises the cross-platform build environment and
+# what option variables we specify in an options file
+#
 from SCons.Script import *
 
 import os

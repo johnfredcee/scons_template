@@ -36,7 +36,7 @@ def generate(env, **kwargs):
         else:
             pass
     else:
-        print "Failed to find boost at %s " % ( env["BOOST_INCLUDE_PATH"] )
+        print("Failed to find boost at " +  env["BOOST_INCLUDE_PATH"])
         Exit(1)
     if ("BOOST_LIBRARIES" in env):
         for boost_lib in env["BOOST_LIBRARIES"]:
@@ -47,7 +47,7 @@ def generate(env, **kwargs):
                     env.Append(LIBPATH =  env["BOOST_LIB_PATH"])
                 env.Append(LIBS =  "boost_" + boost_lib)
             else:
-                print "Failed to find boost %s library at %s " % ( boost_lib, env["BOOST_LIB_PATH"] )
+                print("Failed to find boost " + boost_lib + " library at " +  env["BOOST_LIB_PATH"])
                 Exit(1)                            
     return env
     

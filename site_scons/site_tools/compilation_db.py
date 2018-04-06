@@ -1,4 +1,6 @@
 
+# ensure output of a json compilation database which can be used by variouse editors / autocompletion engines
+
 import SCons.Tool
 import SCons.Defaults
 import SCons.Util

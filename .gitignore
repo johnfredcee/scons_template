@@ -2,3 +2,4 @@
 *.dblite
 hello_boost
 *.o
+.vscode/bookmarks.json

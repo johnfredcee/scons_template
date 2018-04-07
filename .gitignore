@@ -3,3 +3,5 @@
 hello_boost
 *.o
 .vscode/bookmarks.json
+*.obj
+*.exe
